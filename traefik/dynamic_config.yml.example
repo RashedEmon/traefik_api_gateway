@@ -14,7 +14,7 @@ http:
       rule: "PathPrefix(`/`) && Header(`X-Api-Key`, `value`) && Header(`X-Partner`, `value`)"
       middlewares:
         - my-auth-partnerize-addheader
-      service: patnerize
+      service: partnerize
     hp-api-router:
       entryPoints:
         - "web"
@@ -28,7 +28,7 @@ http:
       loadBalancer:
         servers:
           - url: "https://domain-name"
-    patnerize:
+    partnerize:
       loadBalancer:
         servers:
           - url: "https://domain-name"
