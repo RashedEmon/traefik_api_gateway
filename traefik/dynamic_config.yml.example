@@ -1,0 +1,73 @@
+# dynamic configuration
+http:
+  routers:
+    booking-api-router:
+      entryPoints:
+        - "web"
+      rule: "PathPrefix(`/`) && Header(`X-Api-Key`, `value`) && Header(`X-Partner`, `value`)"
+      middlewares:
+        - my-auth-booking-addheader
+      service: booking
+    partnerize-api-router:
+      entryPoints:
+        - "web"
+      rule: "PathPrefix(`/`) && Header(`X-Api-Key`, `value`) && Header(`X-Partner`, `value`)"
+      middlewares:
+        - my-auth-partnerize-addheader
+      service: patnerize
+    hp-api-router:
+      entryPoints:
+        - "web"
+      rule: "PathPrefix(`/`) && Header(`X-Api-Key`, `value`) && Header(`X-Partner`, `value`)"
+      middlewares:
+        - my-auth-hp-addheader
+        - my-auth-hp-remove-header
+      service: hotelplanner
+  services:
+    booking:
+      loadBalancer:
+        servers:
+          - url: "https://domain-name"
+    patnerize:
+      loadBalancer:
+        servers:
+          - url: "https://domain-name"
+    hotelplanner:
+      loadBalancer:
+        servers:
+          - url: "https://domain-name"
+  middlewares:
+    my-auth-booking-addheader:
+      headers:
+        customRequestHeaders:
+          Host: "domain"
+          Content-Type: "application/json"
+          Authorization: "auth-token"
+    my-auth-partnerize-addheader:
+      headers:
+        customRequestHeaders:
+          Host: "domain-name"
+          Authorization: "auth-token"
+          Connection: "keep-alive"
+          X-Api-Key: ""
+          X-Forwarded-For: ""
+          X-Forwarded-Host: ""
+          X-Forwarded-Port: ""
+          X-Forwarded-Proto: ""
+          X-Forwarded-Server: ""
+          X-Real-Ip: ""
+          X-Partner: ""
+    my-auth-hp-addheader:
+      plugin:
+        hotelplanner_auth:
+          Headers: 
+            - x-hp-api-siteid: ""
+          HpConfig:
+            - apiKey: ""
+            - secretKey: ""
+            - accountId: ""
+    my-auth-hp-remove-header:
+      headers:
+        customRequestHeaders:
+          Host: "domain-name"
+          Connection: "keep-alive"

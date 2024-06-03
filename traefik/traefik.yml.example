@@ -1,0 +1,37 @@
+## Static configuration
+entryPoints:
+  web:
+    address: ":80"
+    reusePort: true
+    asDefault: true
+api:
+  insecure: true
+  dashboard: true
+  debug: true
+  disableDashboardAd: true
+providers:
+  file:
+    directory: /etc/traefik/
+    watch: true
+    filename: dynamic_config.yml
+    debugLogGeneratedTemplate: true
+experimental:
+  localPlugins:
+    hotelplanner_auth:
+      moduleName: github.com/traefik/hotelplanner_auth
+log:
+  filePath: "/var/log/traefik/error_logs/traefik.log"
+  format: json
+  level: ERROR
+  noColor: true
+  maxSize: 10
+  maxAge: 15
+  compress: true
+accessLog:
+  filePath: "/var/log/traefik/access_logs/access.log"
+  bufferingSize: 1000
+  filters:
+    statusCodes:
+      - "200-599"
+    retryAttempts: true
+    minDuration: "500ms"
