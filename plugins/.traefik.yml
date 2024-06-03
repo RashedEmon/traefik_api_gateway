@@ -1,0 +1,15 @@
+displayName: Hotel Planner Authorization
+type: middleware
+
+import: github.com/traefik/hotelplanner_auth
+
+summary: 'Prepare hotel planner auth token and set authorization header.'
+
+testData:
+  Headers:
+    X-Demo: test
+    X-URL: '{{URL}}'
+  HpConfig:
+    apiKey: "xxx"
+    secretKey: "xxx"
+    accountId: "xxx"
