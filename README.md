@@ -8,7 +8,7 @@ To learn more. Please visit <a href="https://doc.traefik.io/traefik/">Traefik</a
 
 ### CURL request of Booking:
 ```shell 
-curl --location 'http://partnerapigateway.travelai.com/param1/param2?query_strings' \
+curl --location 'http://apigateway.travelai.com/param1/param2?query_strings' \
 --header 'x-api-key: your-api-key' \
 --header 'x-partner: booking' \
 --header 'Content-Type: appropriate-content-type' \
@@ -24,14 +24,14 @@ curl --location 'http://partnerapigateway.travelai.com/param1/param2?query_strin
 
 ### CURL request of Partnerize:
 ```shell 
-curl --location 'http://partnerapigateway.travelai.com/param1/param2?query_strings' \
+curl --location 'http://apigateway.travelai.com/param1/param2?query_strings' \
 --header 'x-api-Key: your-api-key' \
 --header 'x-partner: partnerize'
 ```
 
 ### CURL request of Hotel Planner:
 ```shell 
-curl --location 'http://partnerapigateway.travelai.com/param1/param2?query_strings' \
+curl --location 'http://apigateway.travelai.com/param1/param2?query_strings' \
 --header 'x-api-key: your-api-key' \
 --header 'x-partner: hotelplanner' \
 --header 'Content-Type: application/json' \
