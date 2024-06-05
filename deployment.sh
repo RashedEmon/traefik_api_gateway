@@ -39,4 +39,5 @@ docker run -d -p 4050:8080 -p 3050:80 \
 -v $PWD/traefik/dynamic_config.yml:/etc/traefik/dynamic_config.yml \
 -v /var/log/traefik/access_logs:/var/log/traefik/access_logs \
 -v /var/log/traefik/error_logs:/var/log/traefik/error_logs \
+--restart=unless-stopped \
 --name "$container_name" "$image_name"
