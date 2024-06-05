@@ -120,6 +120,7 @@ docker run -d -p 4050:8080 -p 3050:80 -v $PWD/traefik/traefik.yml:/etc/traefik/t
 -v $PWD/traefik/dynamic_config.yml:/etc/traefik/dynamic_config.yml
 -v /path_to_host_log_dir:/var/log/traefik/access_logs
 -v /path_to_host_log_dir:/var/log/traefik/error_logs
+--restart=unless-stopped
 --name gateway traefik
 ```
 
